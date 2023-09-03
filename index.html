@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loader Cheval</title>
+
+    <!-- Préchargez la police Muybridge pour éviter les retards d'affichage -->
+    <link rel="preload" as="font" href="/MuybridgeGX.woff2" type="font/woff2" crossorigin>
+
+    <style>
+        /* Styles CSS pour le loader */
+        @font-face {
+            font-family: Muybridge;
+            src: url(/MuybridgeGX.woff2);
+        }
+
+        @keyframes Gallop {
+            from { font-variation-settings: "TIME" 0; }
+            to { font-variation-settings: "TIME" 15; }
+        }
+
+        body.loader-active {
+            font: 50vw Muybridge;
+            animation: 0.8s linear infinite Gallop; /* Durée de l'animation ajustée */
+            overflow: hidden;
+            margin: 0;
+            position: fixed;
+            position: top;
+        }
+
+        .loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: opacity 0.3s ease-in-out;
+            opacity: 1;
+        }
+
+        /* Styles CSS pour le caractère du cheval */
+        .cheval {
+            font-family: Muybridge, sans-serif;
+            font-size: 100%; /* La taille est définie en pourcentage de la largeur de la fenêtre */
+            animation: galop 3s linear infinite; /* Durée de l'animation ajustée */
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        @keyframes galop {
+
+        }
+    </style>
+</head>
+<body class="loader-active">
+    <div class="loader">
+        <div class="cheval">🐎</div>
+    </div>
+
+    <script>
+        // Affichez le loader
+        document.querySelector('.loader').style.opacity = '1';
+        document.body.classList.add('loader-active');
+
+        // Arrêtez l'animation après 3 secondes et cachez le loader
+        setTimeout(function() {
+            document.querySelector('.loader').style.opacity = '0';
+            document.body.classList.remove('loader-active');
+        }, 3000); // 3 secondes
+    </script>
+    
+    <header style="background-color: red;">
+            <!-- Contenu de votre site -->
+    <h1>Bienvenue sur mon site !</h1>
+    
+    </header>
+</body>
+</html>
